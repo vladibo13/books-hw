@@ -4,6 +4,8 @@ import Search from './components/search';
 
 import { books } from './books/booksLoader';
 import CreateBook from './components/create-book';
+import Payment from './components/payment';
+import THead from './components/thead';
 
 class App extends React.Component<any, any> {
 	constructor(props: any) {
@@ -13,9 +15,16 @@ class App extends React.Component<any, any> {
 			filtredBooks: books,
 			searchValue: '',
 			isHeberewChecked: false,
-			cat: 'all'
+			cat: 'all',
+			cart: []
 		};
 	}
+
+	addToCart = (newBook: any) => {
+		this.setState({ cart: [ ...this.state.cart, newBook ] });
+		// this.setState({ cart: [...this.state.cart, product] })
+	};
+
 	searchOperation = (searchTextFromChild: string, isHeberewChecked: boolean, cat: string) => {
 		// get full books list
 		const { books } = this.state;
@@ -43,12 +52,14 @@ class App extends React.Component<any, any> {
 		this.setState({ books: newData, filtredBooks: newData });
 	};
 	render() {
-		const { books, filtredBooks } = this.state;
+		const { books, filtredBooks, cart } = this.state;
 		return (
 			<div className="container">
 				<h1 className="text-center">Book App</h1>
 				<hr />
-				<h3>Search Functionality</h3>
+
+				<hr />
+				<h3>Search Functionality 3</h3>
 				<Search
 					searchOperation={this.searchOperation}
 					searchValue={this.state.searchValue}
@@ -60,8 +71,32 @@ class App extends React.Component<any, any> {
 				<h3>Add Book Functionality</h3>
 				<CreateBook addBook={this.addBook} />
 				<hr />
+				<h3>Cart Books</h3>
+				<h3>Payment</h3>
+				<Payment />
+				{cart.length ? (
+					<table className="table">
+						<THead />
+						<BookList books={cart} />
+					</table>
+				) : (
+					<h1>No Cart Items</h1>
+				)}
+
+				{/* <h2>Cart Books</h2>
+				<table>{filtredBooks.length ? <BookList books={filtredBooks} /> : <p>No Books</p>}</table> */}
+				<hr />
+
+				<h3>Book List</h3>
 				{filtredBooks.length ? (
-					<BookList isHeberewChecked={this.state.isHeberewChecked} books={filtredBooks} />
+					<table className="table">
+						<THead />
+						<BookList
+							addToCart={this.addToCart}
+							HeberewChecked={this.state.isHeberewChecked}
+							books={filtredBooks}
+						/>
+					</table>
 				) : (
 					<h1>No Books Found</h1>
 				)}

@@ -7,7 +7,7 @@ class Search extends React.Component<any, any> {
 			<div>
 				<div>
 					<input
-						placeholder="Search Movie"
+						placeholder="Search Book"
 						value={searchValue}
 						className="form-control"
 						onChange={(e) => {

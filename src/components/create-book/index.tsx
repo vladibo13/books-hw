@@ -14,80 +14,75 @@ class CreateBook extends React.Component<any, any> {
 		const { author, country, imageLink, language, pages, title, year } = this.state;
 		return (
 			<form className="form-inline">
-				<div className="form-group mb-2">
-					<label className="mx-2">Author:</label>
+				<div className="mb-2">
 					<input
 						value={author}
 						type="text"
-						className="form-control "
+						className="form-control mr-1"
+						placeholder="Author"
 						onChange={(e) => {
 							this.setState({ author: e.target.value });
 						}}
 					/>
+					<input
+						value={country}
+						type="text"
+						className="form-control col-3 mr-1"
+						placeholder="Country"
+						onChange={(e) => {
+							this.setState({ country: e.target.value });
+						}}
+					/>
+					<input
+						value={imageLink}
+						type="text"
+						className="form-control col-3 mr-1"
+						placeholder="Image Link"
+						onChange={(e) => {
+							this.setState({ imageLink: e.target.value });
+						}}
+					/>
+					<input
+						value={language}
+						placeholder="Language"
+						type="text"
+						className="form-control col-3 mr-1"
+						onChange={(e) => {
+							this.setState({ language: e.target.value });
+						}}
+					/>
 				</div>
-				<div className="form-group mb-2" />
-				Country:{' '}
 				<input
-					value={country}
-					type="text"
-					className="form-control col-3"
-					onChange={(e) => {
-						this.setState({ country: e.target.value });
-					}}
-				/>
-				<div className="form-group" />
-				ImageLink:{' '}
-				<input
-					value={imageLink}
-					type="text"
-					className="form-control col-3"
-					onChange={(e) => {
-						this.setState({ imageLink: e.target.value });
-					}}
-				/>
-				<div className="form-group" />
-				Language:<input
-					value={language}
-					type="text"
-					className="form-control col-3"
-					onChange={(e) => {
-						this.setState({ language: e.target.value });
-					}}
-				/>
-				<div className="form-group" />
-				Pages:<input
 					value={pages}
 					type="text"
-					className="form-control col-3"
+					className="form-control col-3 mr-1"
+					placeholder="Pages"
 					onChange={(e) => {
 						this.setState({ pages: e.target.value });
 					}}
 				/>
-				<div className="form-group" />
-				Title:<input
+				<input
 					value={title}
 					type="text"
-					className="form-control col-3"
+					className="form-control col-3 mr-1"
+					placeholder="Title"
 					onChange={(e) => {
 						this.setState({ title: e.target.value });
 					}}
 				/>
-				<div className="form-group">
-					Year:
-					<input
-						value={year}
-						type="text"
-						className="form-control col-3"
-						onChange={(e) => {
-							this.setState({ year: e.target.value });
-						}}
-					/>
-				</div>
-				<div className="form-group">
-					<button className="btn btn-primary" type="button" onClick={() => addBook(this.state)}>
-						Add Book
-					</button>
-				</div>
+
+				<input
+					value={year}
+					placeholder="Year"
+					type="text"
+					className="form-control col-3 mr-1"
+					onChange={(e) => {
+						this.setState({ year: e.target.value });
+					}}
+				/>
+				<button className="btn btn-primary" type="button" onClick={() => addBook(this.state)}>
+					Add Book
+				</button>
 			</form>
 		);
 	}
